@@ -1,43 +1,45 @@
 package com.tienda.mintic.controllers;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-/* import org.springframework.web.bind.annotation.RequestMapping; */
-import org.springframework.web.bind.annotation.RestController;
-
-
-import com.tienda.mintic.models.Usuarios;
 import com.tienda.mintic.dao.UsuarioDao;
+import com.tienda.mintic.models.Usuarios;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 public class appController {
+
     @Autowired
     private UsuarioDao usuarioDao;
 
-    @PostMapping("/create")
-    public void create(@RequestBody Usuarios usuario){
-        usuarioDao.save(usuario);
-    }
-
-    @GetMapping("/listar")
-    public List<Usuarios> listar(){
+    public List<Usuarios> data(){
         return usuarioDao.findAll();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable("id") Integer id){
-        usuarioDao.deleteById(id);
+    @GetMapping("/")
+    public String index(){
+
+        return "index";
     }
 
-    @PutMapping("/update")
-    public void update(@RequestBody Usuarios usuario){
-        usuarioDao.save(usuario);
+    @RequestMapping("/menu")
+    public String validar(HttpServletRequest req, HttpServletRequest resp){
+        String user = req.getParameter("usuario");
+        String password = req.getParameter("password");
+
+        if(user.equals("admininicial") && password.equals("admin123456")){
+            return "menu";
+        }else{
+            return "error";
+        }
     }
 
+    @GetMapping("/usuarios")
+    public String usuarios(){
+
+        return "usuarios";
+    }
 }

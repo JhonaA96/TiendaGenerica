@@ -2,9 +2,12 @@ package com.tienda.mintic.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Column;
 
+
 @Entity
+@Table(name="usuarios")
 public class Usuarios {
 
     @Id
