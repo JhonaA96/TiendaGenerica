@@ -7,32 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/styles.css" th:href="@{/css/styles.css}">
     <link rel="stylesheet" href="static/css/normalize.css" th:href="@{/css/normalize.css}">
-    <title>Tienda Generica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Tienda generica</title>
 </head>
 
 <body>
-    <div class="titulo">
-        <h1><a href="#">Tienda Genérica</a> </h1>
-    </div>
-
-    <header class="site-header inicio">
-        <div class="contenedor contenido-header">
-            <div class="barra">
-                <nav id="" class="navegacion">
-                    <a href="/usuarios">Usuarios</a>
-                    <a href="#">Clientes</a>
-                    <a href="#">Proveedores</a>
-                    <a href="#">Productos</a>
-                    <a href="#">Ventas</a>
-                    <a href="#">Reportes</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="contenedor seccion contenido-centrado">
-
-    </main>
+    <h3 class="ml-5">Tienda Genérica</h3>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-5">
+            <li class="nav-item">
+                <a class="navbar-brand" href="/usuarios">Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/clientes">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/proveedores">Proveedores</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/productos">Productos</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/ventas">Ventas</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/reportes">Reportes</a>
+            </li>
+        </ul>
 </body>
 
 </html>

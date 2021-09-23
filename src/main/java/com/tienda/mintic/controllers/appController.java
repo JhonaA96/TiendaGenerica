@@ -21,16 +21,14 @@ public class appController {
 
     @GetMapping("/")
     public String index(){
-
         return "index";
     }
-
     @RequestMapping("/menu")
     public String validar(HttpServletRequest req, HttpServletRequest resp){
         String user = req.getParameter("usuario");
         String password = req.getParameter("password");
-
         if(user.equals("admininicial") && password.equals("admin123456")){
+            
             return "menu";
         }else{
             return "error";
