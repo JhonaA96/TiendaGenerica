@@ -5,22 +5,22 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 /* import org.springframework.boot.CommandLineRunner; */
 import org.springframework.stereotype.Component;
-
+import com.tienda.mintic.dao.UsuarioDao;
 import com.tienda.mintic.models.Usuarios;
 
 @Component
 public class UserDataLoader implements ApplicationRunner{
     @Autowired
-    UserRepository userRepository;
+    UsuarioDao usuarioDao;
 
-    public UserDataLoader(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public UserDataLoader(UsuarioDao usuarioDao){
+        this.usuarioDao = usuarioDao;
     }    
     @Override
     public void run(ApplicationArguments args)throws Exception{
-        if(userRepository.count() == 0){
+        if(usuarioDao.count() == 0){
             Usuarios usuario1 = new Usuarios(111111111, "correo@correo.com", "admininicial", "admin123456", "admininicial");
-            userRepository.save(usuario1);
+            usuarioDao.save(usuario1);
         }
     }
 }

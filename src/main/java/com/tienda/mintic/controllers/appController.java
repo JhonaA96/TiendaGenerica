@@ -23,21 +23,27 @@ public class appController {
     public String index(){
         return "index";
     }
+
+    @GetMapping("/menu")
+    public String menu(){
+        return "menu";
+    }
+
+    @GetMapping("/usuarios")
+    public String usuarios(){
+        return "usuarios";
+    }
+    
     @RequestMapping("/menu")
     public String validar(HttpServletRequest req, HttpServletRequest resp){
         String user = req.getParameter("usuario");
         String password = req.getParameter("password");
+
         if(user.equals("admininicial") && password.equals("admin123456")){
             
             return "menu";
         }else{
             return "error";
         }
-    }
-
-    @GetMapping("/usuarios")
-    public String usuarios(){
-
-        return "usuarios";
     }
 }
