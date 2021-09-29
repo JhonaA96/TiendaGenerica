@@ -2,7 +2,7 @@ package com.tienda.mintic.controllers;
 
 import java.util.List;
 import com.tienda.mintic.dao.UsuarioDao;
-import com.tienda.mintic.models.Usuarios;
+import com.tienda.mintic.models.Usuario;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +15,11 @@ public class appController {
     @Autowired
     private UsuarioDao usuarioDao;
 
-    public List<Usuarios> data(){
+    public List<Usuario> data(){
         return usuarioDao.findAll();
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", "/login"})
     public String index(){
         return "index";
     }

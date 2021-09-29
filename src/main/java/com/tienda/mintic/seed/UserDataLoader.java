@@ -1,12 +1,11 @@
 package com.tienda.mintic.seed;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-/* import org.springframework.boot.CommandLineRunner; */
-import org.springframework.stereotype.Component;
 import com.tienda.mintic.dao.UsuarioDao;
-import com.tienda.mintic.models.Usuarios;
+import com.tienda.mintic.models.Usuario;
+import org.springframework.stereotype.Component;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class UserDataLoader implements ApplicationRunner{
@@ -19,7 +18,7 @@ public class UserDataLoader implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args)throws Exception{
         if(usuarioDao.count() == 0){
-            Usuarios usuario1 = new Usuarios(111111111, "correo@correo.com", "admininicial", "admin123456", "admininicial");
+            Usuario usuario1 = new Usuario(111111111, "correo@correo.com", "admininicial", "admin123456", "admininicial");
             usuarioDao.save(usuario1);
         }
     }

@@ -19,7 +19,7 @@
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
                         <h2 class="card-title text-center mb-5 fw-normal fs-2">Bienvenidos a la tienda generica</h2>
-                        <form method="POST" action="menu" class="formulario">
+                        <form method="POST" th:action="@{/menu}" class="formulario">
                             <div class="form-floating mb-3">
                                 <input class="form-control " type="text" name="usuario" id="usuario">
                                 <label for="usuario" class="floatingInput">Usuario</label>
@@ -32,6 +32,9 @@
                                 <input class="btn btn-dark btn-login text-uppercase fw-bold" type="submit" value="Acceder">
                             </div>
                         </form>
+                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                            Usuario o contraseña invalidos.
+                        </div>
                     </div>
                 </div>
             </div>

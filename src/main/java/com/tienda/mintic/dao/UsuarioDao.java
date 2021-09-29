@@ -1,9 +1,11 @@
 package com.tienda.mintic.dao;
 
-/* import org.springframework.data.repository.CrudRepository; */
+import java.util.Optional;
+import com.tienda.mintic.models.Usuario;
+import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.tienda.mintic.models.Usuarios;
 
-public interface UsuarioDao extends JpaRepository<Usuarios, Integer> {
-
+@Repository
+public interface UsuarioDao extends JpaRepository<Usuario, Long> {
+    public Optional<Usuario> findByUsuario(String usuario);
 }

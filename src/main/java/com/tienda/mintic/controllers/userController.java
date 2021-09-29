@@ -1,8 +1,13 @@
 package com.tienda.mintic.controllers;
 
 import java.util.List;
-import com.tienda.mintic.dao.UsuarioDao;
-import com.tienda.mintic.models.Usuarios;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+import com.tienda.mintic.models.Usuario;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import com.tienda.mintic.service.UsuarioService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,35 +16,57 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @RestController
+@RequestMapping("/api/usuarios")
 public class userController {
+    
     @Autowired
-    private UsuarioDao usuarioDao;
+    private UsuarioService usuarioService;
 
-    @PostMapping("/usuarios/create")
-    public void create(@RequestBody Usuarios usuario){
-        usuarioDao.save(usuario);
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody Usuario usuario){
         
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
     }
-
-    @GetMapping("/usuarios/listar")
-    public List<Usuarios> listar(){
-        return usuarioDao.findAll();
-    }
-
-    @DeleteMapping("/usuarios/delete/{id}")
-    public void delete(@PathVariable("id") Integer id){
-        usuarioDao.deleteById(id);
-    }
-
-    @PutMapping("/usuarios/update/{id}")
-    public void update(@PathVariable("id") Integer id, @RequestBody Usuarios usuario){
-        if(usuarioDao.existsById(id)){
-            usuarioDao.deleteById(id);
-            usuarioDao.save(usuario);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> read(@PathVariable(value="id") Long usuarioId){
+        Optional<Usuario> oUsuario = usuarioService.findById(usuarioId);
+        if(!oUsuario.isPresent()){
+            return ResponseEntity.notFound().build();
         }else{
-            System.out.println("Usuario no encontrado");
+            return ResponseEntity.ok(oUsuario);
         }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable(value="id") Long usuarioId, @RequestBody Usuario usuario){
+        Optional<Usuario> oUsuario = usuarioService.findById(usuarioId);
+        if(!oUsuario.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        oUsuario.get().setCedula_usuario(usuario.getCedula_usuario());
+        oUsuario.get().setEmail_usuario(usuario.getEmail_usuario());
+        oUsuario.get().setNombre_usuario(usuario.getNombre_usuario());
+        oUsuario.get().setPassword(usuario.getPassword());
+        oUsuario.get().setUsuario(usuario.getUsuario());
+        oUsuario.get().setEnabled(usuario.isEnabled());
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioService.save(oUsuario.get()));
+    } 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value="id") Long usuarioId){
+        Optional<Usuario> oUsuario = usuarioService.findById(usuarioId);
+        if(!oUsuario.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        usuarioService.delete(usuarioId);
+        return ResponseEntity.ok().build();
+    }
+    @GetMapping
+    public List<Usuario> readAll(){
+        List<Usuario> usuario = StreamSupport.stream(usuarioService.findAll().spliterator(), false).collect(Collectors.toList());
+        return usuario;
     }
 }
