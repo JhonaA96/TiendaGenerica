@@ -14,7 +14,7 @@ public class Proveedor {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column
-    private Long nitProveedor;
+    private Long nit_proveedor;
     @Column
     private String ciudad_proveedor;
     @Column
@@ -24,9 +24,9 @@ public class Proveedor {
     @Column
     private int telefono_proveedor;
 
-    public Proveedor(Long nitProveedor, String ciudad_proveedor, String direccion_proveedor, String nombre_proveedor,
+    public Proveedor(Long nit_proveedor, String ciudad_proveedor, String direccion_proveedor, String nombre_proveedor,
             int telefono_proveedor) {
-        this.nitProveedor = nitProveedor;
+        this.nit_proveedor = nit_proveedor;
         this.ciudad_proveedor = ciudad_proveedor;
         this.direccion_proveedor = direccion_proveedor;
         this.nombre_proveedor = nombre_proveedor;
@@ -45,12 +45,12 @@ public class Proveedor {
         this.id = id;
     }
 
-    public Long getNitProveedor() {
-        return nitProveedor;
+    public Long getNit_proveedor() {
+        return nit_proveedor;
     }
 
-    public void setNitProveedor(Long nitProveedor) {
-        this.nitProveedor = nitProveedor;
+    public void setNit_proveedor(Long nit_proveedor) {
+        this.nit_proveedor = nit_proveedor;
     }
 
     public String getCiudad_proveedor() {
@@ -84,6 +84,6 @@ public class Proveedor {
     public void setTelefono_proveedor(int telefono_proveedor) {
         this.telefono_proveedor = telefono_proveedor;
     }
-
+    
     
 }
