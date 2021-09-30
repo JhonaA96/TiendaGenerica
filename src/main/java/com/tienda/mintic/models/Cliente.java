@@ -1,9 +1,13 @@
 package com.tienda.mintic.models;
 
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -25,6 +29,15 @@ public class Cliente {
     private Long telefono_cliente;
     @Column
     private boolean enabled = true;
+
+    @OneToMany(mappedBy = "cedula_cliente", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    private List<Ventas> ventas;
+
+    public void agregarVentas(Ventas venta){
+        if(ventas == null) ventas = new ArrayList<>();
+        ventas.add(venta);
+        venta.setCedula_cliente(this);
+    }
 
     public Cliente(Long cedula_cliente, String direccion_cliente, String email_cliente, String nombre_cliente,
             Long telefono_cliente) {

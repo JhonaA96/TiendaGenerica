@@ -1,14 +1,18 @@
 package com.tienda.mintic.models;
 
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name="proveedor")
+@Table(name="proveedores")
 public class Proveedor {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,6 +27,14 @@ public class Proveedor {
     private String nombre_proveedor;
     @Column
     private int telefono_proveedor;
+    @OneToMany(mappedBy = "nit_proveedor", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    private List<Producto> productos;
+
+    public void agregarProducto(Producto producto){
+        if(productos == null) productos = new ArrayList<>();
+        productos.add(producto);
+        producto.setProveedor(this);
+    }
 
     public Proveedor(Long nit_proveedor, String ciudad_proveedor, String direccion_proveedor, String nombre_proveedor,
             int telefono_proveedor) {
