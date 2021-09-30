@@ -22,17 +22,17 @@ public class Cliente {
     @Column
     private String nombre_cliente;
     @Column
-    private Long telefono;
+    private Long telefono_cliente;
     @Column
     private boolean enabled = true;
 
     public Cliente(Long cedula_cliente, String direccion_cliente, String email_cliente, String nombre_cliente,
-            Long telefono) {
+            Long telefono_cliente) {
         this.cedula_cliente = cedula_cliente;
         this.direccion_cliente = direccion_cliente;
         this.email_cliente = email_cliente;
         this.nombre_cliente = nombre_cliente;
-        this.telefono = telefono;
+        this.telefono_cliente = telefono_cliente;
     }
 
     public Cliente(){
@@ -80,11 +80,11 @@ public class Cliente {
     }
 
     public Long getTelefono() {
-        return telefono;
+        return telefono_cliente;
     }
 
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
+    public void setTelefono(Long telefono_cliente) {
+        this.telefono_cliente = telefono_cliente;
     }
 
     public boolean isEnabled() {

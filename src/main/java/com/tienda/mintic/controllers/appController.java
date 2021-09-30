@@ -33,6 +33,17 @@ public class appController {
     public String usuarios(){
         return "usuarios";
     }
+
+    
+    @GetMapping("/clientes")
+    public String clientes(){
+        return "clientes";
+    }
+
+    @GetMapping("/proveedores")
+    public String proveedores(){
+        return "proveedores";
+    }
     
     @RequestMapping("/menu")
     public String validar(HttpServletRequest req, HttpServletRequest resp){
