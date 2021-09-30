@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/usuarios")
 public class userController {
     
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<?> create(@RequestBody Usuario usuario){
         
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
     }
-    @GetMapping("/{id}")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> read(@PathVariable(value="id") Long usuarioId){
         Optional<Usuario> oUsuario = usuarioService.findById(usuarioId);
         if(!oUsuario.isPresent()){
@@ -40,7 +40,7 @@ public class userController {
             return ResponseEntity.ok(oUsuario);
         }
     }
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<?> update(@PathVariable(value="id") Long usuarioId, @RequestBody Usuario usuario){
         Optional<Usuario> oUsuario = usuarioService.findById(usuarioId);
         if(!oUsuario.isPresent()){
@@ -55,7 +55,7 @@ public class userController {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuarioService.save(oUsuario.get()));
     } 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable(value="id") Long usuarioId){
         Optional<Usuario> oUsuario = usuarioService.findById(usuarioId);
         if(!oUsuario.isPresent()){
@@ -64,7 +64,7 @@ public class userController {
         usuarioService.delete(usuarioId);
         return ResponseEntity.ok().build();
     }
-    @GetMapping
+    @GetMapping("/listar")
     public List<Usuario> readAll(){
         List<Usuario> usuario = StreamSupport.stream(usuarioService.findAll().spliterator(), false).collect(Collectors.toList());
         return usuario;

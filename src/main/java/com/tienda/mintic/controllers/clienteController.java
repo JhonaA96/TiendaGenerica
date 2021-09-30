@@ -19,19 +19,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/clientes")
 public class clienteController {
 
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<?> create(@RequestBody Cliente cliente ){
         
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.save(cliente));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> read(@PathVariable(value="id") Long clienteId){
         Optional<Cliente> oCliente = clienteService.findById(clienteId);
         if(!oCliente.isPresent()){
@@ -41,7 +41,7 @@ public class clienteController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<?> update(@PathVariable(value="id") Long usuarioId, @RequestBody Cliente cliente){
         Optional<Cliente> oCliente = clienteService.findById(usuarioId);
         if(!oCliente.isPresent()){
@@ -56,7 +56,7 @@ public class clienteController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(clienteService.save(oCliente.get()));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable(value="id") Long clienteId){
         Optional<Cliente> oCliente = clienteService.findById(clienteId);
         if(!oCliente.isPresent()){
@@ -65,7 +65,7 @@ public class clienteController {
         clienteService.delete(clienteId);
         return ResponseEntity.ok().build();
     }
-    @GetMapping
+    @GetMapping("/listar")
     public List<Cliente> readAll(){
         List<Cliente> cliente = StreamSupport.stream(clienteService.findAll().spliterator(), false).collect(Collectors.toList());
         return cliente;

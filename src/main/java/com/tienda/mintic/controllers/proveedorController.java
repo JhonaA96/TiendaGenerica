@@ -19,19 +19,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/api/proveedores")
+@RequestMapping("/proveedores")
 public class proveedorController {
 
     @Autowired
     private ProveedorService proveedorService;
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<?> create(@RequestBody Proveedor proveedor ){
         
         return ResponseEntity.status(HttpStatus.CREATED).body(proveedorService.save(proveedor));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> read(@PathVariable(value="id") Long proveedorId){
         Optional<Proveedor> oProveedor = proveedorService.findById(proveedorId);
         if(!oProveedor.isPresent()){
@@ -41,7 +41,7 @@ public class proveedorController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<?> update(@PathVariable(value="id") Long proveedorId, @RequestBody Proveedor proveedor){
         Optional<Proveedor> oProveedor = proveedorService.findById(proveedorId);
         if(!oProveedor.isPresent()){
@@ -56,7 +56,7 @@ public class proveedorController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(proveedorService.save(oProveedor.get()));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable(value="id") Long proveedorId){
         Optional<Proveedor> oProveedor = proveedorService.findById(proveedorId);
         if(!oProveedor.isPresent()){
@@ -65,7 +65,7 @@ public class proveedorController {
         proveedorService.delete(proveedorId);
         return ResponseEntity.ok().build();
     }
-    @GetMapping
+    @GetMapping("/listar")
     public List<Proveedor> readAll(){
         List<Proveedor> proveedor = StreamSupport.stream(proveedorService.findAll().spliterator(), false).collect(Collectors.toList());
         return proveedor;
