@@ -18,7 +18,7 @@ public class UserDataLoader implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args)throws Exception{
         if(usuarioDao.count() == 0){
-            Usuario usuario1 = new Usuario(111111111, "correo@correo.com", "admininicial", "admin123456", "admininicial");
+            Usuario usuario1 = new Usuario((long)111111111, "correo@correo.com", "admininicial", "admin123456", "admininicial");
             usuarioDao.save(usuario1);
         }
     }

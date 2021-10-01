@@ -26,7 +26,7 @@ public class Proveedor {
     @Column
     private String nombre_proveedor;
     @Column
-    private int telefono_proveedor;
+    private String telefono_proveedor;
     @OneToMany(mappedBy = "nit_proveedor", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
     private List<Producto> productos;
 
@@ -37,7 +37,7 @@ public class Proveedor {
     }
 
     public Proveedor(Long nit_proveedor, String ciudad_proveedor, String direccion_proveedor, String nombre_proveedor,
-            int telefono_proveedor) {
+            String telefono_proveedor) {
         this.nit_proveedor = nit_proveedor;
         this.ciudad_proveedor = ciudad_proveedor;
         this.direccion_proveedor = direccion_proveedor;
@@ -89,11 +89,11 @@ public class Proveedor {
         this.nombre_proveedor = nombre_proveedor;
     }
 
-    public int getTelefono_proveedor() {
+    public String getTelefono_proveedor() {
         return telefono_proveedor;
     }
 
-    public void setTelefono_proveedor(int telefono_proveedor) {
+    public void setTelefono_proveedor(String telefono_proveedor) {
         this.telefono_proveedor = telefono_proveedor;
     }
     

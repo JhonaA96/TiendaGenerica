@@ -27,8 +27,6 @@ public class Cliente {
     private String nombre_cliente;
     @Column
     private Long telefono_cliente;
-    @Column
-    private boolean enabled = true;
 
     @OneToMany(mappedBy = "cedula_cliente", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
     private List<Ventas> ventas;
@@ -99,14 +97,5 @@ public class Cliente {
     public void setTelefono(Long telefono_cliente) {
         this.telefono_cliente = telefono_cliente;
     }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     
 }

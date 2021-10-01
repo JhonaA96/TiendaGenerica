@@ -19,7 +19,7 @@ public class Usuario {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column
-    private int cedula_usuario;
+    private Long cedula_usuario;
     @Column
     private String email_usuario;
     @Column
@@ -40,7 +40,7 @@ public class Usuario {
         venta.setCedula_usuario(this);
     }
 
-    public Usuario(int cedula_usuario, String email_usuario, String nombre_usuario, String password, String usuario) {
+    public Usuario(Long cedula_usuario, String email_usuario, String nombre_usuario, String password, String usuario) {
         this.cedula_usuario = cedula_usuario;
         this.email_usuario = email_usuario;
         this.nombre_usuario = nombre_usuario;
@@ -56,10 +56,10 @@ public class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
-    public int getCedula_usuario() {
+    public Long getCedula_usuario() {
         return cedula_usuario;
     }
-    public void setCedula_usuario(int cedula_usuario) {
+    public void setCedula_usuario(Long cedula_usuario) {
         this.cedula_usuario = cedula_usuario;
     }
     public String getEmail_usuario() {
