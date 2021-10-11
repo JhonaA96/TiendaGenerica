@@ -44,6 +44,21 @@ public class appController {
     public String proveedores(){
         return "proveedores";
     }
+
+    @GetMapping("/productos")
+    public String productos(){
+        return "productos";
+    }
+
+    @GetMapping("/ventas")
+    public String ventas(){
+        return "ventas";
+    }
+
+    @GetMapping("/reportes")
+    public String reportes(){
+        return "reportes";
+    }
     
     @RequestMapping("/menu")
     public String validar(HttpServletRequest req, HttpServletRequest resp){

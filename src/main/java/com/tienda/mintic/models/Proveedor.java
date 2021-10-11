@@ -8,16 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity
 @Table(name="proveedores")
 public class Proveedor {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @Column
     private Long nit_proveedor;
     @Column
     private String ciudad_proveedor;
@@ -47,14 +42,6 @@ public class Proveedor {
 
     public Proveedor(){
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getNit_proveedor() {

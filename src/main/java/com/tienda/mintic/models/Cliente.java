@@ -8,15 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity
 @Table(name="clientes")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
     @Column
     private Long cedula_cliente;
     @Column
@@ -26,7 +22,7 @@ public class Cliente {
     @Column
     private String nombre_cliente;
     @Column
-    private Long telefono_cliente;
+    private String telefono_cliente;
 
     @OneToMany(mappedBy = "cedula_cliente", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
     private List<Ventas> ventas;
@@ -38,7 +34,7 @@ public class Cliente {
     }
 
     public Cliente(Long cedula_cliente, String direccion_cliente, String email_cliente, String nombre_cliente,
-            Long telefono_cliente) {
+            String telefono_cliente) {
         this.cedula_cliente = cedula_cliente;
         this.direccion_cliente = direccion_cliente;
         this.email_cliente = email_cliente;
@@ -48,14 +44,6 @@ public class Cliente {
 
     public Cliente(){
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getCedula_cliente() {
@@ -90,11 +78,11 @@ public class Cliente {
         this.nombre_cliente = nombre_cliente;
     }
 
-    public Long getTelefono() {
+    public String getTelefono() {
         return telefono_cliente;
     }
 
-    public void setTelefono(Long telefono_cliente) {
+    public void setTelefono(String telefono_cliente) {
         this.telefono_cliente = telefono_cliente;
     }
     

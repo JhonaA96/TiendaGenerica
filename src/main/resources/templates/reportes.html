@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="static/css/normalize.css" th:href="@{/css/normalize.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Reportes</title>
+</head>
+
+<body>
+    <h3 class="">Tienda Genérica</h3>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="nav nav-pills nav-fill ">
+            <li class="nav-item">
+                <a class="navbar-brand" href="/usuarios">Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/clientes">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/proveedores">Proveedores</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/productos">Productos</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/ventas">Ventas</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="/reportes">Reportes</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <form method="POST" class="formulario">
+                            <div class="btn-group-vertical mt-1 mb-0 p-0 d-flex justify-content-between">
+                                <input type="submit" value="Listado de Usuarios" class="m-2 btn btn-dark text-uppercase">
+                                <input type="submit" value="Listado de Clientes" class="m-2 btn btn-dark text-uppercase">
+                                <input type="submit" value="Ventas por Cliente" class="m-2 btn btn-dark text-uppercase">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

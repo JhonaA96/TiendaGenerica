@@ -8,17 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity
 @Table(name="usuarios")
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @Column
     private Long cedula_usuario;
     @Column
     private String email_usuario;
@@ -50,12 +45,7 @@ public class Usuario {
     public Usuario(){
 
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
     public Long getCedula_usuario() {
         return cedula_usuario;
     }
