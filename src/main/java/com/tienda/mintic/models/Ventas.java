@@ -17,10 +17,10 @@ import javax.persistence.CascadeType;
 public class Ventas {
     @Id
     private Long codigo_venta;
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    @ManyToOne
     @JoinColumn(name = "cedula_cliente")
     private Cliente cedula_cliente;
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    @ManyToOne
     @JoinColumn(name = "cedula_usuario")
     private Usuario cedula_usuario;
     @Column

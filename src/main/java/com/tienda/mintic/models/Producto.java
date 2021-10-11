@@ -18,7 +18,7 @@ public class Producto {
     private Long codigo_producto;
     @Column
     private Double iva_compra;
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    @ManyToOne
     @JoinColumn(name = "nit_proveedor")
     private Proveedor nit_proveedor;
     @Column

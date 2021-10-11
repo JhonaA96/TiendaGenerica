@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
-import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="detalle_ventas")
@@ -16,10 +15,10 @@ public class Detalles {
     private Long codigo_detalle_venta;
     @Column
     private int cantidad_producto;
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    @ManyToOne
     @JoinColumn(name = "codigo_producto")
     private Producto codigo_producto;
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH,})
+    @ManyToOne
     @JoinColumn(name = "codigo_venta")
     private Ventas codigo_venta;
     @Column
