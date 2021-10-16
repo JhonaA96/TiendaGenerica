@@ -68,7 +68,7 @@ public class ventasController {
     }
     @GetMapping("/listar")
     public List<Ventas> readAll(){
-        List<Ventas> producto = StreamSupport.stream(ventasService.findAll().spliterator(), false).collect(Collectors.toList());
-        return producto;
+        List<Ventas> venta = StreamSupport.stream(ventasService.findAll().spliterator(), false).collect(Collectors.toList());
+        return venta;
     }
 }
